@@ -19,4 +19,17 @@ export default {
 </script>
 
 <style lang="scss">
+html,
+body {
+  height: 100%;
+}
+
+#app,
+section {
+  height: 100%;
+}
+
+.container {
+  min-height: 100%;
+}
 </style>
