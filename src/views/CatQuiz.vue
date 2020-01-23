@@ -11,17 +11,18 @@
       </div>
       <div class="level-right">
         <div class="level-item">
-          <b-checkbox></b-checkbox>
+          <b-checkbox v-model="currentAnswer[key]"></b-checkbox>
         </div>
       </div>
     </div>
 
-    <b-button @click="nextQuestion">Click Me</b-button>
+    <b-button :disabled="isButtonDisabled" @click="nextQuestion">Click Me</b-button>
     <b-progress :value="10" size="is-large" show-value>1 out of 10</b-progress>
   </div>
 </template>
 
 <script>
+import data from "../data";
 export default {
   computed: {
     currentNumber() {
@@ -30,68 +31,37 @@ export default {
     },
     currentIdAsNumber() {
       return Number.parseInt(this.currentId, 10);
+    },
+    isButtonDisabled() {
+      const clickedAnswers = Object.values(this.currentAnswer);
+      const trueAnswers = clickedAnswers.filter(a => a === true);
+      if (trueAnswers.length === 1) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
   methods: {
     nextQuestion() {
       console.log(this.currentId);
       const nextId = this.currentIdAsNumber + 1;
+      console.log(JSON.stringify(this.currentAnswer));
       this.setQuestion(nextId);
     },
     setQuestion(id) {
       console.log(id);
       this.currentId = "" + id;
       this.currentQuestion = this.questions[this.currentId];
+      this.currentAnswer = {};
     }
   },
   data() {
     return {
-      questions: {
-        "0": {
-          text: "Frage1",
-          answers: {
-            "0": {
-              text: "Antwort1",
-              valid: true
-            },
-            "1": {
-              text: "Antwort2",
-              valid: false
-            },
-            "2": {
-              text: "Antwort3",
-              valid: false
-            },
-            "3": {
-              text: "Antwort4",
-              valid: false
-            }
-          }
-        },
-        "1": {
-          text: "Frage2",
-          answers: {
-            "0": {
-              text: "aaa",
-              valid: true
-            },
-            "1": {
-              text: "bbb",
-              valid: false
-            },
-            "2": {
-              text: "ccc",
-              valid: false
-            },
-            "3": {
-              text: "ddd",
-              valid: false
-            }
-          }
-        }
-      },
+      questions: data.questions,
       currentQuestion: Object,
-      currentId: String
+      currentId: String,
+      currentAnswer: Object
     };
   },
   mounted() {
