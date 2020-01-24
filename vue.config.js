@@ -3,5 +3,6 @@ module.exports = {
     host: "0.0.0.0",
     public: "0.0.0.0:8080",
     disableHostCheck: true
-  }
+  },
+  publicPath: "/otto-test/"
 }
