@@ -1,6 +1,6 @@
-# Sachios website!
+# Sachios website! 123
 
-## Project 🍲 setup
+## Project setup
 ```
 npm install
 ```
