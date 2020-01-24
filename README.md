@@ -1,4 +1,4 @@
-# otto-test
+# Sachios website
 
 ## Project setup
 ```

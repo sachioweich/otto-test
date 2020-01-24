@@ -44,13 +44,13 @@ export default {
   },
   methods: {
     nextQuestion() {
-      console.log(this.currentId);
+      //console.log(this.currentId);
       const nextId = this.currentIdAsNumber + 1;
-      console.log(JSON.stringify(this.currentAnswer));
+      //console.log(JSON.stringify(this.currentAnswer));
       this.setQuestion(nextId);
     },
     setQuestion(id) {
-      console.log(id);
+      //console.log(id);
       this.currentId = "" + id;
       this.currentQuestion = this.questions[this.currentId];
       this.currentAnswer = {};
